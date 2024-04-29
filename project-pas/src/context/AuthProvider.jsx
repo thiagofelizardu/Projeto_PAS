@@ -9,28 +9,19 @@ export const useAuth = () => {
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
-  const [currentPage, setCurrentPage] = useState('/');
 
-  const signUp = (name, email, password) => {
+  const login = (name) => {
     setIsLoggedIn(true);
     setUserName(name);
-    setCurrentPage('/home');
   };
 
-  const signIn = (email, password) => {
-    setIsLoggedIn(true);
-    setUserName('Usuário Logado');
-    setCurrentPage('/home');
-  };
-
-  const signOut = () => {
+  const logout = () => {
     setIsLoggedIn(false);
     setUserName('');
-    setCurrentPage('/');
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, userName, signUp, signIn, signOut, currentPage }}>
+    <AuthContext.Provider value={{ isLoggedIn, userName, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -16,6 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
 import { validateFields } from '../../components/ValidateFields';
+import { useAuth } from '../../context/AuthProvider';
 
 
 function Copyright(props) {
@@ -31,12 +32,13 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
+
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [formValues, setFormValues] = useState({
     firstName: '',
@@ -73,6 +75,8 @@ export default function SignUp() {
         phone: '',
         receiveEmails: '',
       });
+
+      login(formValues.firstName);
       navigate('/home');
     }
   };
@@ -126,8 +130,10 @@ export default function SignUp() {
                   autoComplete="family-name"
                 />
               </Grid>
-                            <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={6}>
                 <TextField
+                error={Boolean(validationErrors.dateOfBirth)}
+                helperText={validationErrors.dateOfBirth || ''}
                   required
                   fullWidth
                   id="date"
@@ -185,10 +191,6 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox checked={formValues.receiveEmails} onChange={handleChange} name="receiveEmails" color="primary" />}
-                  label="Quero receber notificações por e-mail."
-                />
               </Grid>
             </Grid>
             <Button
