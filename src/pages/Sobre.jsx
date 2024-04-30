@@ -1,15 +1,14 @@
 import React from 'react';
 import { useAuth } from '../context/AuthProvider';
 
-const HomePage = () => {
+const Sobre = () => {
   const { userName } = useAuth();
 
   return (
     <div>
-      <h1>Olá, {userName}!</h1>
-      <hr/>
+      <h2>Sobre PAge</h2>
     </div>
   );
 };
 
-export default HomePage;
+export default Sobre;
