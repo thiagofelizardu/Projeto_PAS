@@ -1,3 +1,5 @@
+@import 'simplebar-react/dist/simplebar.min.css';
+
 *{
     margin: 0%;
     padding: 0%;
@@ -7,5 +9,5 @@
 .container{
     width: 100vw;
     min-height: 100vh;
-    background: ;
+    background: 0 ;
 }
