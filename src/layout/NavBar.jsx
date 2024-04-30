@@ -12,13 +12,13 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Link } from 'react-router-dom'; // Importe o Link para roteamento
+import { Link } from 'react-router-dom'; 
 
 const pages = [{ label: 'Home', url: '/home' }];
 const settings = [
   { label: 'Profile', url: '/profile' },
-  { label: 'Sign-in', url: '/sign-in' },
-  { label: 'Sign-up', url: '/sign-up' },
+  { label: 'Entrar', url: '/sign-in' },
+  { label: 'Inscrever-se', url: '/sign-up' },
   { label: 'Logout', url: '/logout' }
 ];
 

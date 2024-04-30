@@ -6,6 +6,7 @@ import AuthProvider from './context/AuthProvider';
 import HomePage from './pages/HomePage';
 import NavBar from './layout/NavBar';
 import Sobre from './pages/Sobre';
+import Profile from './pages/Profile';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <div className='container'>
         <NavBar /> 
         <Routes>
+        <Route path="/profile" element={<Profile />} />
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-in" element={<SignIn />} />
