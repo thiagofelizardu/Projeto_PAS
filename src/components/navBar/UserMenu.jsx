@@ -20,7 +20,8 @@ const ITEM_HEIGHT = 48;
 
 export default function UserMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [showLogoutMessage, setShowLogoutMessage] = useState(false); // Estado para controlar a exibição da mensagem de logout
+  const [showLogoutMessage, setShowLogoutMessage] = useState(false);
+  const [showLoginMessage, setShowLoginMessage] = useState(false); // Novo estado para mostrar a mensagem "Você precisa estar logado"
   const open = Boolean(anchorEl);
   const { userName, isLoggedIn, logout } = useAuth(); 
 
@@ -33,9 +34,14 @@ export default function UserMenu() {
   };
 
   const handleLogout = () => {
-    logout(); 
-    setShowLogoutMessage(true); // Mostra a mensagem de logout
-    setTimeout(() => setShowLogoutMessage(false), 3000); // Esconde a mensagem após 3 segundos
+    if (isLoggedIn) {
+      logout(); 
+      setShowLogoutMessage(true);
+      setTimeout(() => setShowLogoutMessage(false), 3000);
+    } else {
+      setShowLoginMessage(true);
+      setTimeout(() => setShowLoginMessage(false), 3000);
+    }
   };
 
   return (
@@ -98,6 +104,7 @@ export default function UserMenu() {
         </Menu>
       </Container>
       {showLogoutMessage && <div style={{ position: 'fixed', bottom: 20, right: 20, background: '#4CAF50', color: '#ffffff', padding: '10px', borderRadius: '5px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>Logout realizado com sucesso!</div>}
+      {showLoginMessage && <div style={{ position: 'fixed', bottom: 20, right: 20, background: '#ff0000', color: '#ffffff', padding: '10px', borderRadius: '5px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>Você precisa estar logado!</div>}
     </Container>
   );
 }
