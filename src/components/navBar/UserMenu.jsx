@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -6,12 +6,14 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthProvider';
 
 const options = [
   { label: 'Cadastre-se', path: '/sign-up' },
   { label: 'Entrar', path: '/sign-in' },
   { label: 'Profile', path: '/profile' },
   { label: 'Divulgar Espaço', path: '/divulgar-espaco' },
+  { label: 'Sair', path: '/login' }, 
 ];
 
 const ITEM_HEIGHT = 48;
@@ -20,12 +22,19 @@ export default function UserMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
+  const { userName,logout } = useAuth(); 
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    logout(); 
+    history.push('/login');
   };
 
   return (
@@ -49,9 +58,10 @@ export default function UserMenu() {
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             },
             transition: 'box-shadow 0.3s ease',
-            
+
           }}
         >
+          
           <MenuIcon fontSize="large" sx={{ fontSize: 30, color: '#ffffff' }} />
           <AccountCircleIcon sx={{ fontSize: 30, color: '#ffffff' }} />
         </Box>
@@ -70,12 +80,13 @@ export default function UserMenu() {
             },
           }}
         >
-
+          {userName && <h4 style={{ marginLeft: '6px' }}>Olá, {userName}</h4>}
+          <hr />
           {options.map((option) => (
             <MenuItem
               key={option.label}
               selected={option.label === 'Profile'}
-              onClick={handleClose}
+              onClick={option.label === 'Sair' ? handleLogout : handleClose} // Chama handleLogout se a opção for "Sair"
               component={Link}
               to={option.path}
             >

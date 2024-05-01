@@ -57,7 +57,7 @@ export default function SignUp() {
         phone: '',
         receiveEmails: '',
       });
-
+      
       login(formValues.firstName);
       navigate('/home');
     }
