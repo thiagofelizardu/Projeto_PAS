@@ -12,7 +12,7 @@ const options = [
   { label: 'Cadastre-se', path: '/sign-up' },
   { label: 'Entrar', path: '/sign-in' },
   { label: 'Profile', path: '/profile' },
-  { label: 'Divulgar Espaço', path: '/divulgar-espaco' },
+  { label: 'Divulgar Espaço', path: '/register-espaco' },
   { label: 'Sair', path: '/login' }, 
 ];
 
@@ -85,8 +85,7 @@ export default function UserMenu() {
           {options.map((option) => (
             <MenuItem
               key={option.label}
-              selected={option.label === 'Profile'}
-              onClick={option.label === 'Sair' ? handleLogout : handleClose} // Chama handleLogout se a opção for "Sair"
+              onClick={option.label === 'Sair' ? handleLogout : handleClose}
               component={Link}
               to={option.path}
             >
