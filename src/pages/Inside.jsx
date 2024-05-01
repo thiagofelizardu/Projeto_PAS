@@ -108,20 +108,23 @@ export default function Inside() {
                     </Box>
                 </Modal>
                 <Divider style={{ margin: '20px 0' }} />
-                <Container>
+                <Container >
                     <Box>
-                    <Typography variant="h4" >Casa em Praia da Pipa, Brasil</Typography>
-                    <Typography variant="body1"color="textSecondary">12 hóspedes. 4 quartos. 4 banheiros</Typography>
+                        <Typography variant="h4" >Casa em Praia da Pipa, Brasil</Typography>
+                        <Typography variant="body1" color="textSecondary">12 hóspedes . 4 quartos. 4 banheiros</Typography>
                     </Box>
+                    <Box>
                     <Typography
                         variant="body1"
                         color="text.secondary"
                         sx={{ mb: { xs: 2, sm: 4, marginTop: '20px' } }}
                     >
-                        Here you can provide a brief overview of the key features of the
-                        product. For example, you could list the number of features, the types
-                        of features, add-ons, or the benefits of the features.
+                        Localizada em um bairro tranquilo e arborizado, esta encantadora casa oferece o equilíbrio perfeito entre conforto e estilo.
+                        Com um design moderno e espaçoso, esta propriedade é ideal para famílias que buscam um lar acolhedor e funcional.<br />
+                       <br />Os quartos são espaçosos e luminosos, proporcionando o refúgio perfeito para descansar após um longo dia.
+                        O quarto principal, com seu próprio banheiro privativo, oferece conforto e privacidade.
                     </Typography>
+                    </Box>
                 </Container>
                 <Divider style={{ margin: '20px 0' }} />
             </Container>
