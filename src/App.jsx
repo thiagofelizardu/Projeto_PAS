@@ -30,7 +30,7 @@ const App = () => {
               <Route path="/home" element={<HomePage />} />
               <Route path="/inside" element={<Inside />} />
               <Route path="/page404" element={<Page404 />} />
-              <Route path="*" element={<Navigate to="/Page404" replace />} />
+              <Route path="*" element={<Navigate to="/home" replace />} />
             </Routes>
             <FooterBar /> 
           </div>

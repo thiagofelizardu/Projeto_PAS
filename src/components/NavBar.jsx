@@ -11,9 +11,11 @@ export default function ButtonAppBar() {
   return (
     <Box sx={{
       position: 'flex',
+      position: 'fixed ',
       top: 0,
       left: 0,
       display: 'flex',
+      zIndex: 9999,
       justifyContent: 'space-between',
       alignItems: 'center',
       backgroundColor: '#1976d2',
