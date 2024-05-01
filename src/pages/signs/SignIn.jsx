@@ -1,36 +1,59 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
 import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
 
-import { useNavigate } from 'react-router-dom';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { validateSignIn } from '../../components/validate/ValidateSignIn';
+import { useAuth } from '../../context/AuthProvider';
 import ThemeProvider from '../../theme';
 
 
-
 export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+  const navigate = useNavigate();
+
+  const { login } = useAuth();
+
+  const [validationErrors, setValidationErrors] = React.useState({});
+
+  const [formValues, setFormValues] = React.useState({
+    email: '',
+    password: '',
+
+    receiveEmails: false,
+  });
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
     });
   };
 
-  const navigate = useNavigate();
-  const handleSignUpClick = () => {
-    navigate('/home');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newValidationErrors = validateSignIn(formValues);
+    if (Object.keys(newValidationErrors).length > 0) {
+      setValidationErrors(newValidationErrors);
+    } else {
+
+      setValidationErrors({
+        email: '',
+        password: '',
+      });
+
+      login(formValues.email);
+      navigate('/home');
+    }
   };
 
   return (
@@ -51,27 +74,37 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Senha"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                error={Boolean(validationErrors.email)} // Aplica a classe de erro se houver erro de validação
+                helperText={validationErrors.email || ''} // Exibe a mensagem de erro
+                margin="normal"
+                onChange={handleChange}
+                value={formValues.email}
+                required
+                fullWidth
+                id="email"
+                label="Email"
+                name="email"
+                autoComplete="email"
+                autoFocus
+              /></Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                error={Boolean(validationErrors.password)}
+                helperText={validationErrors.password || ''}
+                margin="normal"
+                required
+                fullWidth
+                onChange={handleChange}
+                value={formValues.password}
+                name="password"
+                label="Senha"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              /></Grid>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Lembre-se de mim"
@@ -81,7 +114,6 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={handleSignUpClick}
             >
               Entrar
             </Button>
@@ -100,6 +132,6 @@ export default function SignIn() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 }

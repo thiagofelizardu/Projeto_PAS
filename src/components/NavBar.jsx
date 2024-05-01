@@ -5,7 +5,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import UserMenu from './navBar/UserMenu';
 import { Link } from 'react-router-dom';
 
-import { Container } from '@mui/material';
 
 export default function ButtonAppBar() {
   return (
@@ -15,8 +14,8 @@ export default function ButtonAppBar() {
       alignItems: 'center',
       backgroundColor: '#1976d2',
       height: '60px',
-      padding: '1 20px', 
-      width: '100%', 
+      padding: '1 20px',
+      width: '100%',
       margin: '0',
     }}>
       <Box sx={{alignItems: 'center'}}>

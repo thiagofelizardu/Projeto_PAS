@@ -74,7 +74,7 @@ export default function UserMenu() {
           {options.map((option) => (
             <MenuItem
               key={option.label}
-              selected={option.label === 'Profile'}
+              selected={option.label === 'Entrar'}
               onClick={handleClose}
               component={Link}
               to={option.path}

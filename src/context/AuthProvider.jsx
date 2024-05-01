@@ -10,9 +10,9 @@ const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
 
-  const login = (name) => {
+  const login = (email) => {
     setIsLoggedIn(true);
-    setUserName(name);
+    setUserName(email);
   };
 
   const logout = () => {
