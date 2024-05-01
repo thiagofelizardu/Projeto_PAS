@@ -15,7 +15,6 @@ const Img = styled('img')({
 });
 
 const HomePage = () => {
-  const { userName } = useAuth();
 
   return (
     <Container>

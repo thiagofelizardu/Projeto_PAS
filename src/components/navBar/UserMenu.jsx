@@ -13,7 +13,7 @@ const options = [
   { label: 'Entrar', path: '/sign-in' },
   { label: 'Profile', path: '/profile' },
   { label: 'Divulgar Espaço', path: '/register-espaco' },
-  { label: 'Sair', path: '/login' }, 
+  { label: 'Sair', path: '/home' }, 
 ];
 
 const ITEM_HEIGHT = 48;

@@ -26,6 +26,7 @@ export default function SignIn() {
   const [validationErrors, setValidationErrors] = React.useState({});
 
   const [formValues, setFormValues] = React.useState({
+    username:'Admin',
     email: '',
     password: '',
 
@@ -51,7 +52,7 @@ export default function SignIn() {
         password: '',
       });
 
-      login(formValues.email);
+      login(formValues.username);
       navigate('/home');
     }
   };
