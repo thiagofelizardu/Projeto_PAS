@@ -17,7 +17,6 @@ import { validateSignIn } from '../../components/validate/ValidateSignIn';
 import { useAuth } from '../../context/AuthProvider';
 import ThemeProvider from '../../theme';
 
-
 export default function SignIn() {
   const navigate = useNavigate();
 
@@ -26,11 +25,12 @@ export default function SignIn() {
   const [validationErrors, setValidationErrors] = React.useState({});
 
   const [formValues, setFormValues] = React.useState({
+    username:'Admin',
     email: '',
     password: '',
-
     receiveEmails: false,
   });
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormValues({
@@ -45,66 +45,61 @@ export default function SignIn() {
     if (Object.keys(newValidationErrors).length > 0) {
       setValidationErrors(newValidationErrors);
     } else {
-
       setValidationErrors({
         email: '',
         password: '',
       });
-
-      login(formValues.email);
+      login(formValues.username);
       navigate('/home');
     }
   };
 
   return (
     <ThemeProvider>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+        <Box sx={{ mt: 8, mb: 8, mx: 'auto', width: '100%', textAlign: 'center' }}>
+          <Avatar sx={{ m: 'auto', bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" sx={{ mt: 2 }}>
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                error={Boolean(validationErrors.email)} // Aplica a classe de erro se houver erro de validação
-                helperText={validationErrors.email || ''} // Exibe a mensagem de erro
-                margin="normal"
-                onChange={handleChange}
-                value={formValues.email}
-                required
-                fullWidth
-                id="email"
-                label="Email"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              /></Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                error={Boolean(validationErrors.password)}
-                helperText={validationErrors.password || ''}
-                margin="normal"
-                required
-                fullWidth
-                onChange={handleChange}
-                value={formValues.password}
-                name="password"
-                label="Senha"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              /></Grid>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  error={Boolean(validationErrors.email)}
+                  helperText={validationErrors.email || ''}
+                  margin="normal"
+                  onChange={handleChange}
+                  value={formValues.email}
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  error={Boolean(validationErrors.password)}
+                  helperText={validationErrors.password || ''}
+                  margin="normal"
+                  required
+                  fullWidth
+                  onChange={handleChange}
+                  value={formValues.password}
+                  name="password"
+                  label="Senha"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
+              </Grid>
+            </Grid>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Lembre-se de mim"
@@ -117,8 +112,8 @@ export default function SignIn() {
             >
               Entrar
             </Button>
-            <Grid container>
-              <Grid item xs>
+            <Grid container justifyContent="flex-end" spacing={7}>
+              <Grid item>
                 <Link href="#" variant="body2">
                   Esqueceu à senha?
                 </Link>
@@ -132,6 +127,6 @@ export default function SignIn() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider >
+    </ThemeProvider>
   );
 }

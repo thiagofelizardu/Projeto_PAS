@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -13,16 +13,17 @@ const options = [
   { label: 'Entrar', path: '/sign-in' },
   { label: 'Profile', path: '/profile' },
   { label: 'Divulgar Espaço', path: '/register-espaco' },
-  { label: 'Sair', path: '/login' }, 
+  { label: 'Sair', path: '/home' }, 
 ];
 
 const ITEM_HEIGHT = 48;
 
 export default function UserMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [showLogoutMessage, setShowLogoutMessage] = useState(false);
+  const [showLoginMessage, setShowLoginMessage] = useState(false);
   const open = Boolean(anchorEl);
-
-  const { userName,logout } = useAuth(); 
+  const { userName, isLoggedIn, logout } = useAuth(); 
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -33,8 +34,14 @@ export default function UserMenu() {
   };
 
   const handleLogout = () => {
-    logout(); 
-    history.push('/login');
+    if (isLoggedIn) {
+      logout(); 
+      setShowLogoutMessage(true);
+      setTimeout(() => setShowLogoutMessage(false), 3000);
+    } else {
+      setShowLoginMessage(true);
+      setTimeout(() => setShowLoginMessage(false), 3000);
+    }
   };
 
   return (
@@ -58,10 +65,8 @@ export default function UserMenu() {
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             },
             transition: 'box-shadow 0.3s ease',
-
           }}
         >
-          
           <MenuIcon fontSize="large" sx={{ fontSize: 30, color: '#ffffff' }} />
           <AccountCircleIcon sx={{ fontSize: 30, color: '#ffffff' }} />
         </Box>
@@ -77,25 +82,32 @@ export default function UserMenu() {
             style: {
               maxHeight: ITEM_HEIGHT * 4.5,
               width: '20ch',
+              background: '#Dfe9f5', 
             },
           }}
         >
           {userName && <h4 style={{ marginLeft: '6px' }}>Olá, {userName}</h4>}
-          <hr />
+          <hr style={{ borderColor: '#Dfe9f5' }} />
           {options.map((option) => (
-            <MenuItem
-              key={option.label}
-              onClick={option.label === 'Sair' ? handleLogout : handleClose}
-              component={Link}
-              to={option.path}
-            >
-              {option.label}
-            </MenuItem>
+            (isLoggedIn && option.label === 'Divulgar Espaço') ||
+            (option.label === 'Profile' && isLoggedIn) ||
+            (option.label === 'Sair' && isLoggedIn) ||
+            (!(isLoggedIn && (option.label === 'Cadastre-se' || option.label === 'Entrar')) && option.label !== 'Sair' && option.label !== 'Profile' && option.label !== 'Divulgar Espaço')
+          ) &&(
+              <MenuItem
+                key={option.label}
+                selected={isLoggedIn && option.label === 'Profile'}
+                onClick={option.label === 'Sair' ? handleLogout : handleClose}
+                component={Link}
+                to={option.path}
+              >
+                {option.label}
+              </MenuItem>
           ))}
         </Menu>
       </Container>
+      {showLogoutMessage && <div style={{ position: 'fixed', bottom: 20, right: 20, background: '#4CAF50', color: '#ffffff', padding: '10px', borderRadius: '5px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>Logout realizado com sucesso!</div>}
+      {showLoginMessage && <div style={{ position: 'fixed', bottom: 20, right: 20, background: '#ff0000', color: '#ffffff', padding: '10px', borderRadius: '5px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>Você precisa estar logado!</div>}
     </Container>
-
   );
-
 }
