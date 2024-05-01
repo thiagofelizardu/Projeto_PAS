@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -22,7 +22,7 @@ export default function UserMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const { userName,logout } = useAuth(); 
+  const { userName, isLoggedIn, logout } = useAuth(); 
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -58,10 +58,8 @@ export default function UserMenu() {
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             },
             transition: 'box-shadow 0.3s ease',
-
           }}
         >
-          
           <MenuIcon fontSize="large" sx={{ fontSize: 30, color: '#ffffff' }} />
           <AccountCircleIcon sx={{ fontSize: 30, color: '#ffffff' }} />
         </Box>
@@ -83,20 +81,22 @@ export default function UserMenu() {
           {userName && <h4 style={{ marginLeft: '6px' }}>Olá, {userName}</h4>}
           <hr />
           {options.map((option) => (
-            <MenuItem
-              key={option.label}
-              selected={option.label === 'Profile'}
-              onClick={option.label === 'Sair' ? handleLogout : handleClose} // Chama handleLogout se a opção for "Sair"
-              component={Link}
-              to={option.path}
-            >
-              {option.label}
-            </MenuItem>
+            !(isLoggedIn && (option.label === 'Cadastre-se' || option.label === 'Entrar')) &&(
+              <MenuItem
+                key={option.label}
+                selected={isLoggedIn && option.label === 'Profile'}
+                onClick={option.label === 'Sair' ? handleLogout : handleClose}
+                component={Link}
+                to={option.path}
+              >
+                {option.label}
+              </MenuItem>
+            )
           ))}
+          <hr />
         </Menu>
       </Container>
     </Container>
-
   );
-
 }
+
