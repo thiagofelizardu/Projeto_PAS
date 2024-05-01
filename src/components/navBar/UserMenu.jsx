@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -20,8 +20,8 @@ const ITEM_HEIGHT = 48;
 
 export default function UserMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [showLogoutMessage, setShowLogoutMessage] = useState(false); // Estado para controlar a exibição da mensagem de logout
   const open = Boolean(anchorEl);
-
   const { userName, isLoggedIn, logout } = useAuth(); 
 
   const handleClick = (event) => {
@@ -34,7 +34,8 @@ export default function UserMenu() {
 
   const handleLogout = () => {
     logout(); 
-    history.push('/login');
+    setShowLogoutMessage(true); // Mostra a mensagem de logout
+    setTimeout(() => setShowLogoutMessage(false), 3000); // Esconde a mensagem após 3 segundos
   };
 
   return (
@@ -96,7 +97,7 @@ export default function UserMenu() {
           <hr />
         </Menu>
       </Container>
+      {showLogoutMessage && <div style={{ position: 'fixed', bottom: 20, right: 20, background: '#4CAF50', color: '#ffffff', padding: '10px', borderRadius: '5px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>Logout realizado com sucesso!</div>}
     </Container>
   );
 }
-

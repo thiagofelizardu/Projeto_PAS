@@ -15,7 +15,6 @@ const Img = styled('img')({
 });
 
 const HomePage = () => {
-
   return (
     <Container>
       <Paper
@@ -61,6 +60,36 @@ const HomePage = () => {
             </Typography>
           </Grid>
         </Grid>
+        <Grid item>
+        <ButtonBase sx={{ width: 400, height: 300 }}>
+          <Img alt="complex" src="src\imagens\casa2.jpg" style={{ width: '400px', height: '400px' }} />
+        </ButtonBase>
+      </Grid>
+      <Grid item xs={12} sm container>
+        <Grid item xs container direction="column" spacing={2}>
+          <Grid item xs>
+            <Typography gutterBottom variant="subtitle1" component="div">
+              Standard license
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              Full resolution 1920x1080 • JPEG
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              ID: 1030115
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography sx={{ cursor: 'pointer' }} variant="body2">
+              Alugar
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid item>
+          <Typography variant="subtitle1" component="div">
+            $25.00
+          </Typography>
+        </Grid>
+      </Grid>
       </Grid>
     </Paper>
     </Container>
