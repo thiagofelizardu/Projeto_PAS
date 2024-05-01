@@ -1,21 +1,24 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { Container } from '@mui/material';
+
 import SignUp from './pages/signs/SignUp';
 import SignIn from './pages/signs/SignIn';
+import  ThemeProvider  from './theme';
 import AuthProvider from './context/AuthProvider';
 import HomePage from './pages/HomePage';
-import NavBar from './layout/NavBar';
+import NavBar from './components/NavBar';
 import Sobre from './pages/Sobre';
 import Inside from './pages/Inside';
-import  ThemeProvider  from './theme';
 import Profile from './pages/Profile';
+
 
 const App = () => {
   return (
     <ThemeProvider>
       <AuthProvider>
-      <div className='container'>
-        <NavBar /> 
+      <div className='bodyApp'>
+        <NavBar />
         <Routes>
          <Route path="/profile" element={<Profile />} />
           <Route path="/sobre" element={<Sobre />} />
