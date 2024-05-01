@@ -34,7 +34,7 @@ export default function UserMenu() {
         <Box
           onClick={handleClick}
           sx={{
-            padding: '0.5rem',
+            padding: '0.7rem',
             '@media (min-width: 768px)': {
               paddingY: '0.25rem',
             },
@@ -49,6 +49,7 @@ export default function UserMenu() {
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             },
             transition: 'box-shadow 0.3s ease',
+            
           }}
         >
           <MenuIcon fontSize="large" sx={{ fontSize: 30, color: '#ffffff' }} />
