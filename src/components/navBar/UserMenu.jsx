@@ -12,7 +12,7 @@ const options = [
   { label: 'Cadastre-se', path: '/sign-up' },
   { label: 'Entrar', path: '/sign-in' },
   { label: 'Profile', path: '/profile' },
-  { label: 'Divulgar Espaço', path: '/divulgar-espaco' },
+  { label: 'Divulgar Espaço', path: '/register-espaco' },
   { label: 'Sair', path: '/login' }, 
 ];
 
