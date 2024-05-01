@@ -4,7 +4,8 @@ import Typography from '@mui/material/Typography';
 import HomeIcon from '@mui/icons-material/Home';
 import UserMenu from './navBar/UserMenu';
 import { Link } from 'react-router-dom';
-
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function ButtonAppBar() {
   return (
@@ -18,8 +19,8 @@ export default function ButtonAppBar() {
       width: '100%', 
       margin: '0',
     }}>
-      <Box sx={{alignItems: 'center'}}>
-        <HomeIcon sx={{ fontSize: 30, color: '#ffffff' }}/>
+      <Box sx={{alignItems: 'center', display: 'flex'}}>
+        <HomeIcon sx={{ fontSize: 30, color: '#ffffff', marginRight: '10px' }}/>
         <Typography variant="h3" component={Link} to='/home' sx={{
           fontWeight: 700,
           fontFamily: 'monospace',
@@ -28,8 +29,15 @@ export default function ButtonAppBar() {
           textDecoration: 'none',
           color: '#ffffff',
         }}>
-          Feliz
+          FelizMoveis
         </Typography>
+        <div style={{marginLeft: '20px', backgroundColor: '#ffffff', borderRadius: '4px', display: 'flex', alignItems: 'center'}}>
+          <SearchIcon style={{padding: '10px', fontSize: '2.5rem'}}/>
+          <InputBase
+            placeholder="Pesquisar..."
+            inputProps={{ 'aria-label': 'search' }}
+          />
+        </div>
       </Box>
       <Box >
         <UserMenu />
