@@ -79,34 +79,35 @@ const HomePage = () => {
                         </Typography>
                       </CardContent>
                     </CardActionArea>
-                    </Link>
-                <Card>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      image={
-                        typeof item.imagens === "string"
-                          ? item.imagens
-                          : URL.createObjectURL(item.imagens)
-                      }
-                      alt="Imagem"
-                      style={{ width: "100%", height: 200, objectFit: "cover" }}
-                    />
-                    <CardContent sx={{ flexGrow: 1 }}>
-                      <Typography variant="h5" component="div">
-                        {item.location}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {item.info}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {item.description}
-                      </Typography>
-                      <Typography fontSize="" fontWeight="bold">
-                        {`${item.price}`}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
+                  </Link>
+                  <Card>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        image={
+                          typeof item.imagens === "string"
+                            ? item.imagens
+                            : URL.createObjectURL(item.imagens)
+                        }
+                        alt="Imagem"
+                        style={{ width: "100%", height: 200, objectFit: "cover" }}
+                      />
+                      <CardContent sx={{ flexGrow: 1 }}>
+                        <Typography variant="h5" component="div">
+                          {item.location}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {item.info}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {item.description}
+                        </Typography>
+                        <Typography fontSize="" fontWeight="bold">
+                          {`${item.price}`}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
                 </Card>
               </Grid>
             ))}
