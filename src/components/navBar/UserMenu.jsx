@@ -21,7 +21,7 @@ const ITEM_HEIGHT = 48;
 export default function UserMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [showLogoutMessage, setShowLogoutMessage] = useState(false);
-  const [showLoginMessage, setShowLoginMessage] = useState(false); // Novo estado para mostrar a mensagem "Você precisa estar logado"
+  const [showLoginMessage, setShowLoginMessage] = useState(false);
   const open = Boolean(anchorEl);
   const { userName, isLoggedIn, logout } = useAuth(); 
 
@@ -82,13 +82,18 @@ export default function UserMenu() {
             style: {
               maxHeight: ITEM_HEIGHT * 4.5,
               width: '20ch',
+              background: '#Dfe9f5', 
             },
           }}
         >
           {userName && <h4 style={{ marginLeft: '6px' }}>Olá, {userName}</h4>}
-          <hr />
+          <hr style={{ borderColor: '#Dfe9f5' }} />
           {options.map((option) => (
-            !(isLoggedIn && (option.label === 'Cadastre-se' || option.label === 'Entrar')) &&(
+            (isLoggedIn && option.label === 'Divulgar Espaço') ||
+            (option.label === 'Profile' && isLoggedIn) ||
+            (option.label === 'Sair' && isLoggedIn) ||
+            (!(isLoggedIn && (option.label === 'Cadastre-se' || option.label === 'Entrar')) && option.label !== 'Sair' && option.label !== 'Profile' && option.label !== 'Divulgar Espaço')
+          ) &&(
               <MenuItem
                 key={option.label}
                 selected={isLoggedIn && option.label === 'Profile'}
@@ -98,9 +103,7 @@ export default function UserMenu() {
               >
                 {option.label}
               </MenuItem>
-            )
           ))}
-          <hr />
         </Menu>
       </Container>
       {showLogoutMessage && <div style={{ position: 'fixed', bottom: 20, right: 20, background: '#4CAF50', color: '#ffffff', padding: '10px', borderRadius: '5px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>Logout realizado com sucesso!</div>}

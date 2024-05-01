@@ -6,6 +6,7 @@ import ThemeProvider from './theme';
 import AuthProvider from './context/AuthProvider';
 import HomePage from './pages/HomePage';
 import NavBar from './components/NavBar';
+import FooterBar from './components/FooterBar';
 import Sobre from './pages/Sobre';
 import Inside from './pages/Inside';
 import Profile from './pages/Profile';
@@ -31,6 +32,7 @@ const App = () => {
               <Route path="/page404" element={<Page404 />} />
               <Route path="*" element={<Navigate to="/Page404" replace />} />
             </Routes>
+            <FooterBar /> 
           </div>
         </CadastroProvider>
       </AuthProvider>

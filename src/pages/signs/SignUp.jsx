@@ -64,7 +64,7 @@ export default function SignUp() {
 
   return (
     <ThemeProvider>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <CssBaseline />
         <Box
           sx={{
@@ -111,10 +111,10 @@ export default function SignUp() {
                   autoComplete="family-name"
                 />
               </Grid>
-                <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6}>
                 <TextField
-                error={Boolean(validationErrors.dateOfBirth)}
-                helperText={validationErrors.dateOfBirth || ''}
+                  error={Boolean(validationErrors.dateOfBirth)}
+                  helperText={validationErrors.dateOfBirth || ''}
                   required
                   fullWidth
                   id="date"
@@ -170,8 +170,6 @@ export default function SignUp() {
                   id="password"
                   autoComplete="new-password"
                 />
-              </Grid>
-              <Grid item xs={12}>
               </Grid>
             </Grid>
             <Button
