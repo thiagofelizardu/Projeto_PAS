@@ -19,7 +19,7 @@ const options = [
 const ITEM_HEIGHT = 48;
 
 export default function UserMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const [showLogoutMessage, setShowLogoutMessage] = useState(false);
   const [showLoginMessage, setShowLoginMessage] = useState(false);
   const open = Boolean(anchorEl);
@@ -83,6 +83,7 @@ export default function UserMenu() {
               maxHeight: ITEM_HEIGHT * 4.5,
               width: '20ch',
               background: '#Dfe9f5', 
+              animation: open ? 'scaleMenu 0.3s forwards' : '',
             },
           }}
         >

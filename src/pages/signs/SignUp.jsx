@@ -1,3 +1,4 @@
+import React, { useState , useEffect} from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -8,7 +9,7 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import React, { useState } from 'react';
+
 
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { validateFields } from '../../components/validate/ValidateCadastro';
@@ -20,6 +21,10 @@ import ThemeProvider from '../../theme';
 export default function SignUp() {
   const navigate = useNavigate();
   const { login } = useAuth();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); 
 
   const [formValues, setFormValues] = useState({
     firstName: '',

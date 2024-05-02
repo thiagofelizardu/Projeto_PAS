@@ -10,8 +10,8 @@ import SearchIcon from '@mui/icons-material/Search';
 export default function ButtonAppBar() {
   return (
     <Box sx={{
-      position: 'fixed',
-      top: 0,
+      position: 'fixed', // Altere para 'fixed'
+      top: 0, // Fixe no topo
       left: 0,
       display: 'flex',
       zIndex: 9999,

@@ -1,3 +1,4 @@
+import React, {useEffect} from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -10,7 +11,7 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import * as React from 'react';
+
 
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { validateSignIn } from '../../components/validate/ValidateSignIn';
@@ -18,6 +19,11 @@ import { useAuth } from '../../context/AuthProvider';
 import ThemeProvider from '../../theme';
 
 export default function SignIn() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); 
+
   const navigate = useNavigate();
 
   const { login } = useAuth();

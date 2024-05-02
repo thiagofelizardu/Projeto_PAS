@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import {
   Container,
@@ -35,6 +35,10 @@ const HomePage = () => {
   ];
 
   const casasTotais = [...casasEstaticas, ...cadastro];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); 
 
   return (
     <Container>

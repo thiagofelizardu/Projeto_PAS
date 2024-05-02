@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import { useAuth } from '../context/AuthProvider';
 import { Container, Box, Grid, Card, CardContent, Typography } from '@mui/material';
 
 
 const Profile = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); 
   const { userName, } = useAuth();
   return (
     <Container>
