@@ -16,7 +16,6 @@ import casastatic2 from "../imagens/MansaoJP.jpg";
 const HomePage = () => {
   const { cadastro } = useCadastro();
 
-  // Informações estáticas das casas
   const casasEstaticas = [
     {
       location: "Mansão Pipa Natal",

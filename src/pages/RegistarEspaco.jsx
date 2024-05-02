@@ -60,8 +60,8 @@ export default function RegistrarEspaco() {
           <CssBaseline />
           <Box
             sx={{
-              height: '100vh',
-              marginTop: 17,
+              height: '140vh',
+              marginTop: 13,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center'

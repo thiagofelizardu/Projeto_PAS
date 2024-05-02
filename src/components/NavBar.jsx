@@ -33,7 +33,7 @@ export default function ButtonAppBar() {
           textDecoration: 'none',
           color: '#ffffff',
         }}>
-          Felizardo`s
+          Home
         </Typography>
         <div style={{marginLeft: '20px', backgroundColor: '#ffffff', borderRadius: '4px', display: 'flex', alignItems: 'center'}}>
           <SearchIcon style={{padding: '10px', fontSize: '2.5rem'}}/>

@@ -8,7 +8,7 @@ export const useAuth = () => {
 
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState('');
+  const [userName,setUserName] = useState('');
 
   const login = (email) => {
     setIsLoggedIn(true);
