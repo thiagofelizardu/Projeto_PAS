@@ -12,6 +12,7 @@ import {
 import { useCadastro } from "../context/CadastroContext";
 import casastatic from "../imagens/masaoPipa.jpg";
 import casastatic2 from "../imagens/MansaoJP.jpg";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const { cadastro } = useCadastro();
@@ -22,14 +23,14 @@ const HomePage = () => {
       location: "Mansão Pipa Natal",
       info: "Pipa Rio Grande Do Norte",
       description: "Mansão disponível",
-      price: "1.465$/dia",
+      price: "1.465$",
       imagens: casastatic,
     },
     {
       location: "Mansão VIP",
       info: "João Pessoa PB",
       description: "Mansão disponível",
-      price: "1.800$/dia",
+      price: "1.800$",
       imagens: casastatic2,
     },
   ];
@@ -51,6 +52,7 @@ const HomePage = () => {
             {casasTotais.map((item, index) => (
               <Grid item key={index} xs={12} sm={6} md={4}>
                 <Card>
+                <Link to={`/inside/${index}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                   <CardActionArea>
                     <CardMedia
                       component="img"
@@ -73,10 +75,11 @@ const HomePage = () => {
                         {item.description}
                       </Typography>
                       <Typography fontSize="" fontWeight="bold">
-                        {`${item.price}`}
+                        {`${item.price}/dia`}
                       </Typography>
                     </CardContent>
                   </CardActionArea>
+                  </Link>
                 </Card>
               </Grid>
             ))}

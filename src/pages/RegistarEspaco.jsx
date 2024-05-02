@@ -14,14 +14,16 @@ import CabinIcon from '@mui/icons-material/Cabin';
 import ThemeProvider from '../theme';
 import { CadastroProvider, useCadastro } from '../context/CadastroContext';
 import FormatPrice from '../components/FormatPrice';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function RegistrarEspaco() {
   const navigate = useNavigate();
-
-
-  const { addCadastro } = useCadastro();
+  const { contador, addCadastro } = useCadastro();
+  const newIdRef = React.useRef(null);
 
   const [formValues, setFormValues] = useState({
+    id: newIdRef,
+    title: '',
     location: '',
     info: '',
     imagens: null,
@@ -32,7 +34,7 @@ export default function RegistrarEspaco() {
   const handlePriceChange = (value) => {
     let numericValue = parseFloat(value.replace(/[^\d.-]/g, '')) / 100;
     numericValue = isNaN(numericValue) ? 0 : numericValue;
-  
+
     const formattedPrice = FormatPrice(numericValue);
     setFormValues({
       ...formValues,
@@ -40,12 +42,32 @@ export default function RegistrarEspaco() {
       price: formattedPrice,
     });
   };
-
+  console.log(newIdRef)
   const handleSubmit = (event) => {
     event.preventDefault();
-    addCadastro(formValues);
-    console.log(formValues);
-    navigate('/home');
+
+    if (!newIdRef.current) {
+      newIdRef.current = uuidv4(); // Gerando um identificador único apenas uma vez
+    }
+
+    const newCadastro = {
+      ...formValues,
+      id: newIdRef.current // Usando o mesmo ID gerado anteriormente
+    };
+
+    addCadastro(newCadastro);
+
+    setFormValues({
+      ...newCadastro,
+      title: '',
+      location: '',
+      info: '',
+      imagens: null,
+      descrition: '',
+      price: ''
+    });
+    console.log(formValues)
+    navigate(`/home`);
   };
 
   const handleImageChange = (event) => {
@@ -75,6 +97,17 @@ export default function RegistrarEspaco() {
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
               <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    onChange={(e) => setFormValues({ ...formValues, title: e.target.value })}
+                    value={formValues.title}
+                    required
+                    fullWidth
+                    id="title"
+                    label="title"
+                    name="title"
+                  />
+                </Grid>
                 <Grid item xs={12}>
                   <TextField
                     onChange={(e) => setFormValues({ ...formValues, location: e.target.value })}
@@ -139,7 +172,7 @@ export default function RegistrarEspaco() {
                     label="Preço"
                     name="price"
                     type="text"
-                 
+
                   />
 
                 </Grid>
