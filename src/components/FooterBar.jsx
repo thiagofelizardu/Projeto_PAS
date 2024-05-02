@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 
 export default function FooterBar() {
   return (
-    <Box sx={{
-      position: 'flex',
+    <Box
+    sx={{
+      position: 'fixed',
       bottom: 0,
       left: 0,
       width: '100%',
@@ -15,7 +16,10 @@ export default function FooterBar() {
       textAlign: 'center',
       padding: '10px',
       borderTop: '1px solid #666',
-    }}>
+      zIndex: 1000,
+    }}
+  >
+
       <Typography variant="body1" component={Link} to='/about' sx={{
         textDecoration: 'none',
         color: '#fff',

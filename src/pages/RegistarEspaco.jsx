@@ -22,6 +22,7 @@ export default function RegistrarEspaco() {
   const { addCadastro } = useCadastro();
 
   const [formValues, setFormValues] = useState({
+    title: '',
     location: '',
     info: '',
     imagens: null,
@@ -75,6 +76,17 @@ export default function RegistrarEspaco() {
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
               <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    onChange={(e) => setFormValues({ ...formValues, title: e.target.value })}
+                    value={formValues.title}
+                    required
+                    fullWidth
+                    id="title"
+                    label="Titulo"
+                    name="titulo"
+                  />
+                </Grid>
                 <Grid item xs={12}>
                   <TextField
                     onChange={(e) => setFormValues({ ...formValues, location: e.target.value })}
