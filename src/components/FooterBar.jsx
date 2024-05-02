@@ -7,7 +7,7 @@ export default function FooterBar() {
   return (
     <Box
     sx={{
-      position: 'fixed',
+      position: 'flex',
       bottom: 0,
       left: 0,
       width: '100%',
